@@ -56,7 +56,8 @@ DiscoveryManager.getInstance().shutdownComponent()；
 
 ## 行为分析
 ### 日志
-- [启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eukeka.log)
+- [服务端启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka-server.log)
+- [客户端启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka-client.log)
 ### 涉及类名及行为
 - org.springframework.cloud.context.scope.GenericScope
 ```
@@ -296,10 +297,140 @@ Mapping filters: filterRegistrationBean urls=[/*], filterRegistrationBean urls=[
       Did not match:
          - @ConditionalOnProperty (eureka.client.healthcheck.enabled) did not find property 'eureka.client.healthcheck.enabled' (OnPropertyCondition)
 ```
-## 核心类行为分析
+### 核心类行为分析
 - org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider
-:warning:该类org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider#get用于提供元数据
+```
+用于提供元数据
+public ManagementMetadata get(EurekaInstanceConfigBean instance, int serverPort, String serverContextPath, String managementContextPath, Integer managementPort) {
+	if (this.isRandom(managementPort)) {
+		return null;
+	} else if (managementPort == null && this.isRandom(serverPort)) {
+		return null;
+	} else {
+		String healthCheckUrl = this.getHealthCheckUrl(instance, serverPort, serverContextPath, managementContextPath, managementPort, false);
+		String statusPageUrl = this.getStatusPageUrl(instance, serverPort, serverContextPath, managementContextPath, managementPort);
+		ManagementMetadata metadata = new ManagementMetadata(healthCheckUrl, statusPageUrl, managementPort == null ? serverPort : managementPort);
+		if (instance.isSecurePortEnabled()) {
+			metadata.setSecureHealthCheckUrl(this.getHealthCheckUrl(instance, serverPort, serverContextPath, managementContextPath, managementPort, true));
+		}
 
+		return metadata;
+	}
+}
+```
+- com.netflix.discovery.DiscoveryClient
+```
+根据instanceInfo服务注册
+boolean register() throws Throwable {
+	logger.info("DiscoveryClient_{}: registering service...", this.appPathIdentifier);
+
+	EurekaHttpResponse httpResponse;
+	try {
+		httpResponse = this.eurekaTransport.registrationClient.register(this.instanceInfo);
+	} catch (Exception var3) {
+		logger.warn("DiscoveryClient_{} - registration failed {}", new Object[]{this.appPathIdentifier, var3.getMessage(), var3});
+		throw var3;
+	}
+
+	if (logger.isInfoEnabled()) {
+		logger.info("DiscoveryClient_{} - registration status: {}", this.appPathIdentifier, httpResponse.getStatusCode());
+	}
+
+	return httpResponse.getStatusCode() == Status.NO_CONTENT.getStatusCode();
+}
+<-- com.netflix.discovery.InstanceInfoReplicator#run
+<-- com.netflix.discovery.DiscoveryClient#initScheduledTasks
+开启了获取服务注册列表的信息，如果需要向Eureka Server注册，则开启注册，同时开启了定时向Eureka Server服务续约的定时任务
+```
+- com.netflix.eureka.cluster.PeerEurekaNodes
+```
+利用服务器冗余，提高服务器宕机时服务的高可用
+public void start() {
+	this.taskExecutor = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
+		public Thread newThread(Runnable r) {
+			Thread thread = new Thread(r, "Eureka-PeerNodesUpdater");
+			thread.setDaemon(true);
+			return thread;
+		}
+	});
+
+	try {
+		this.updatePeerEurekaNodes(this.resolvePeerUrls());
+		Runnable peersUpdateTask = new Runnable() {
+			public void run() {
+				try {
+					PeerEurekaNodes.this.updatePeerEurekaNodes(PeerEurekaNodes.this.resolvePeerUrls());
+				} catch (Throwable var2) {
+					PeerEurekaNodes.logger.error("Cannot update the replica Nodes", var2);
+				}
+
+			}
+		};
+		this.taskExecutor.scheduleWithFixedDelay(peersUpdateTask, (long)this.serverConfig.getPeerEurekaNodesUpdateIntervalMs(), (long)this.serverConfig.getPeerEurekaNodesUpdateIntervalMs(), TimeUnit.MILLISECONDS);
+	} catch (Exception var3) {
+		throw new IllegalStateException(var3);
+	}
+
+	Iterator var4 = this.peerEurekaNodes.iterator();
+
+	while(var4.hasNext()) {
+		PeerEurekaNode node = (PeerEurekaNode)var4.next();
+		logger.info("Replica node URL:  {}", node.getServiceUrl());
+	}
+
+}
+```
+- com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient
+```
+同步注册服务到其他集群节点
+public EurekaHttpResponse<Void> register(InstanceInfo info) {
+        String urlPath = "apps/" + info.getAppName();
+        ClientResponse response = null;
+
+        EurekaHttpResponse var5;
+        try {
+            Builder resourceBuilder = this.jerseyClient.resource(this.serviceUrl).path(urlPath).getRequestBuilder();
+            # http://peer1:8000/eureka/apps/EUREKA-CLIENT
+			this.addExtraHeaders(resourceBuilder);
+            response = (ClientResponse)((Builder)((Builder)((Builder)resourceBuilder.header("Accept-Encoding", "gzip")).type(MediaType.APPLICATION_JSON_TYPE)).accept(new String[]{"application/json"})).post(ClientResponse.class, info);
+            var5 = EurekaHttpResponse.anEurekaHttpResponse(response.getStatus()).headers(headersOf(response)).build();
+        } finally {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Jersey HTTP POST {}/{} with instance {}; statusCode={}", new Object[]{this.serviceUrl, urlPath, info.getId(), response == null ? "N/A" : response.getStatus()});
+            }
+
+            if (response != null) {
+                response.close();
+            }
+
+        }
+
+        return var5;
+    }
+```
+- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap
+```
+初始化服务器端上下文
+org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap#initEurekaEnvironment
+<-- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap#contextInitialized
+<-- org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration#start
+```
+- org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration
+```
+刷新服务信息
+org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration#start
+<-- org.springframework.context.support.DefaultLifecycleProcessor#doStart
+<-- org.springframework.context.support.AbstractApplicationContext#finishRefresh
+<-- org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#finishRefresh
+```
+- com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl
+```
+同步集群节点的状态
+com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl#openForTraffic
+<-- org.springframework.cloud.netflix.eureka.server.InstanceRegistry#openForTraffic
+<-- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap#initEurekaServerContext
+<-- C:/Users/Administrator/.m2/repository/org/springframework/cloud/spring-cloud-netflix-eureka-server/2.1.1.RELEASE/spring-cloud-netflix-eureka-server-2.1.1.RELEASE.jar!/org/springframework/cloud/netflix/eureka/server/EurekaServerBootstrap.class:54
+```
 ## Eureka
 [![Build Status](https://travis-ci.org/Netflix/eureka.svg?branch=master)](https://travis-ci.org/Netflix/eureka)
 
