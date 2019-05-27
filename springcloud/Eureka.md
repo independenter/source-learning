@@ -1,5 +1,5 @@
 # Eureka Learn
-Eureka Learn 记录了对于Eureka的相关学习 
+Eureka Learn 记录了对于Eureka的相关学习
 # [源码地址](https://github.com/Netflix/eureka.git)
 # [学习地址](https://github.com/independenter/eureka.git)
 
@@ -9,10 +9,33 @@ Eureka Learn 记录了对于Eureka的相关学习
 
 ## 目录
 - [官方定义](#Eureka)
+- [学习版本](#学习版本)
+- [依赖配置](#依赖配置)
 - [概念阐述](#概念阐述) 
 - [设计模式](#设计模式) 
 - [自我理解](#自我理解)
 
+## 学习版本
+|模块|版本|
+|spring-boot|2.1.5.RELEASE|
+|java.version|1.8|
+|spring-cloud.version|Greenwich.SR1|
+
+## 依赖配置
+### server
+```
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+```
+### client
+```
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+```
 ## 概念阐述
 
 ## 设计模式
