@@ -58,15 +58,17 @@ DiscoveryManager.getInstance().shutdownComponent()；
 ## 自我理解
 ### 日志
 - [启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eukeka.log)
-### 核心类名
-- org.springframework.cloud.context.scope.GenericScope
-```
-Generating bean factory id from names: [default.org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration.RibbonClientSpecification,eureka.dashboard-org.springframework.cloud.netflix.eureka.server.EurekaDashboardProperties, eureka.instance.registry-org.springframework.cloud.netflix.eureka.server.InstanceRegistryProperties, eurekaApplication, eurekaApplicationInfoManager, eurekaAutoServiceRegistration, eurekaClient, eurekaClientConfigBean, eurekaController, eurekaDiscoverClientMarker, eurekaFeature, eurekaHealthIndicator, eurekaInstanceConfigBean, eurekaRegistration, eurekaServerBootstrap, eurekaServerConfig, eurekaServerContext, eurekaServerFeature, eurekaServerMarkerBean, eurekaServiceRegistry,org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$EurekaClientConfigurationRefresher, org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration$EurekaServerConfigBeanConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration,org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration,peerEurekaNodes,scopedTarget.eurekaApplicationInfoManager, scopedTarget.eurekaClient, scopedTarget.eurekaRegistration,]
-```
-- org.springframework.beans.factory.support.DefaultListableBeanFactory
+### 涉及类名
+- [org.springframework.cloud.context.scope.GenericScope](#scope.GenericScope)
+- [org.springframework.beans.factory.support.DefaultListableBeanFactory](#support.DefaultListableBeanFactory)
 ```
 Creting shared instance of singleton bean on the factory id above.
 ```
+#scope.GenericScope
+```
+Generating bean factory id from names: [default.org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration.RibbonClientSpecification,eureka.dashboard-org.springframework.cloud.netflix.eureka.server.EurekaDashboardProperties, eureka.instance.registry-org.springframework.cloud.netflix.eureka.server.InstanceRegistryProperties, eurekaApplication, eurekaApplicationInfoManager, eurekaAutoServiceRegistration, eurekaClient, eurekaClientConfigBean, eurekaController, eurekaDiscoverClientMarker, eurekaFeature, eurekaHealthIndicator, eurekaInstanceConfigBean, eurekaRegistration, eurekaServerBootstrap, eurekaServerConfig, eurekaServerContext, eurekaServerFeature, eurekaServerMarkerBean, eurekaServiceRegistry,org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$EurekaClientConfigurationRefresher, org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration$EurekaServerConfigBeanConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration,org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration,peerEurekaNodes,scopedTarget.eurekaApplicationInfoManager, scopedTarget.eurekaClient, scopedTarget.eurekaRegistration,]
+```
+
 - org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider
 ```
 2019-05-27 23:22:30.228 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-client/1.9.8/eureka-client-1.9.8.jar!/com/netflix/discovery/provider/DiscoveryJerseyProvider.class]
@@ -78,7 +80,219 @@ Creting shared instance of singleton bean on the factory id above.
 2019-05-27 23:22:30.347 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ServerInfoResource.class]
 2019-05-27 23:22:30.348 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/StatusResource.class]
 2019-05-27 23:22:30.348 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/VIPResource.class]
+2019-05-27 23:22:30.518 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaHealthIndicator'
+2019-05-27 23:22:30.519 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration'
+2019-05-27 23:22:30.521 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaInstanceConfigBean'
+2019-05-27 23:22:30.533 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaInstanceConfigBean' via factory method to bean named 'inetUtils'
+2019-05-27 23:22:30.533 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaInstanceConfigBean' via factory method to bean named 'serviceManagementMetadataProvider'
+2019-05-27 23:22:31.015 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaHealthIndicator' via factory method to bean named 'eurekaClient'
+2019-05-27 23:22:31.015 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaHealthIndicator' via factory method to bean named 'eurekaInstanceConfigBean'
+2019-05-27 23:22:31.015 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaHealthIndicator' via factory method to bean named 'eurekaClientConfigBean'
+2019-05-27 23:22:31.026 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'discoveryCompositeHealthIndicator' via factory method to bean named 'eurekaHealthIndicator'
+2019-05-27 23:22:31.162 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaFeature'
+2019-05-27 23:22:31.170 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'default.org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration.RibbonClientSpecification'
+2019-05-27 23:22:31.176 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaServerFeature'
+2019-05-27 23:22:31.184 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaRegistration'
+2019-05-27 23:22:31.195 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaServiceRegistry'
+2019-05-27 23:22:31.196 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'serviceRegistryEndpoint' via factory method to bean named 'eurekaServiceRegistry'
+2019-05-27 23:22:31.986 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaApplication'
+2019-05-27 23:22:31.987 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration'
+2019-05-27 23:22:31.987 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaServerMarkerBean'
+2019-05-27 23:22:33.782 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$EurekaClientConfigurationRefresher'
+2019-05-27 23:22:33.786 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaAutoServiceRegistration'
+2019-05-27 23:22:33.789 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaAutoServiceRegistration' via factory method to bean named 'org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@12796d3'
+2019-05-27 23:22:33.790 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaAutoServiceRegistration' via factory method to bean named 'eurekaServiceRegistry'
+2019-05-27 23:22:33.790 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaAutoServiceRegistration' via factory method to bean named 'eurekaRegistration'
+2019-05-27 23:22:33.791 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration'
+2019-05-27 23:22:33.792 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaDiscoverClientMarker'
+2019-05-27 23:22:33.800 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration'
+2019-05-27 23:22:33.803 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'discoveryClientOptionalArgs'
+2019-05-27 23:22:33.803 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration'
+2019-05-27 23:22:33.810 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'discoveryClient'
+2019-05-27 23:22:33.812 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'discoveryClient' via factory method to bean named 'eurekaClient'
+2019-05-27 23:22:33.812 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'discoveryClient' via factory method to bean named 'eurekaClientConfigBean'
+2019-05-27 23:22:36.553 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration'
+2019-05-27 23:22:36.556 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaServerBootstrap'
+2019-05-27 23:22:36.584 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaClient' via factory method to bean named 'eurekaApplicationInfoManager'
+2019-05-27 23:22:36.584 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaClient' via factory method to bean named 'eurekaClientConfigBean'
+2019-05-27 23:22:36.585 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaClient' via factory method to bean named 'eurekaInstanceConfigBean'
+2019-05-27 23:22:36.588 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaApplicationInfoManager' via factory method to bean named 'eurekaInstanceConfigBean'
+2019-05-27 23:22:36.757 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaServerContext'
+2019-05-27 23:22:36.759 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'peerEurekaNodes'
+2019-05-27 23:22:36.759 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'peerEurekaNodes' via factory method to bean named 'peerAwareInstanceRegistry'
+2019-05-27 23:22:36.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'peerEurekaNodes' via factory method to bean named 'serverCodecs'
+2019-05-27 23:22:36.766 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaServerContext' via factory method to bean named 'serverCodecs'
+2019-05-27 23:22:36.767 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaServerContext' via factory method to bean named 'peerAwareInstanceRegistry'
+2019-05-27 23:22:36.767 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaServerContext' via factory method to bean named 'peerEurekaNodes'
+2019-05-27 23:22:38.064 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaServerBootstrap' via factory method to bean named 'peerAwareInstanceRegistry'
+2019-05-27 23:22:38.064 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'eurekaServerBootstrap' via factory method to bean named 'eurekaServerContext'
+2019-05-27 23:22:38.066 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaController'
+2019-05-27 23:22:38.069 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eureka.dashboard-org.springframework.cloud.netflix.eureka.server.EurekaDashboardProperties'
+2019-05-27 23:22:38.070 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration'
+2019-05-27 23:22:38.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaRegistration' via factory method to bean named 'eurekaClient'
+2019-05-27 23:22:38.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaRegistration' via factory method to bean named 'eurekaInstanceConfigBean'
+2019-05-27 23:22:38.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaRegistration' via factory method to bean named 'eurekaApplicationInfoManager'
 ```
+- org.springframework.core.env.PropertySourcesPropertyResolver
+```
+2019-05-27 23:22:30.533 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Found key 'eureka.instance.hostname' in PropertySource 'configurationProperties' with value of type String
+2019-05-27 23:22:38.398 [Thread-11] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Found key 'eureka.environment' in PropertySource 'configurationProperties' with value of type String
+```
+- org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider
+```
+2019-05-27 23:22:31.000 [main] DEBUG org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider - Constructed eureka meta-data healthcheckUrl: http://peer1:8000/actuator/health
+2019-05-27 23:22:31.001 [main] DEBUG org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider - Constructed eureka meta-data statusPageUrl: http://peer1:8000/actuator/info
+```
+- org.springframework.boot.web.servlet.ServletContextInitializerBeans
+```
+Mapping filters: filterRegistrationBean urls=[/*], filterRegistrationBean urls=[/*], filterRegistrationBean urls=[/eureka/*], characterEncodingFilter urls=[/*], hiddenHttpMethodFilter urls=[/*], formContentFilter urls=[/*], requestContextFilter urls=[/*]
+```
+- org.springframework.cloud.netflix.eureka.InstanceInfoFactory
+```
+2019-05-27 23:22:36.594 [main] INFO  org.springframework.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+```
+- com.netflix.discovery.DiscoveryClient 
+```
+2019-05-27 23:22:36.666 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+```
+- com.netflix.eureka.DefaultEurekaServerContext
+```
+2019-05-27 23:22:36.769 [main] INFO  com.netflix.eureka.DefaultEurekaServerContext - Initializing ...
+```
+- com.netflix.eureka.cluster.PeerEurekaNodes
+```
+2019-05-27 23:22:36.773 [main] INFO  com.netflix.eureka.cluster.PeerEurekaNodes - Adding new peer nodes [http://peer2:7000/eureka/]
+2019-05-27 23:22:38.046 [main] INFO  com.netflix.eureka.cluster.PeerEurekaNodes - Replica node URL:  http://peer2:7000/eureka/
+```
+- com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient
+```
+2019-05-27 23:22:37.948 [main] DEBUG com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient - Created client for url: http://peer2:7000/eureka/
+```
+- com.netflix.eureka.registry.AbstractInstanceRegistry
+```
+2019-05-27 23:22:38.062 [main] INFO  com.netflix.eureka.registry.AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+```
+- com.netflix.eureka.DefaultEurekaServerContext
+```
+2019-05-27 23:22:38.063 [main] INFO  com.netflix.eureka.DefaultEurekaServerContext - Initialized
+```
+- org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry
+```
+2019-05-27 23:22:38.296 [main] INFO  org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry - Registering application EUREKA-SERVER with eureka with status UP
+```
+- org.springframework.context.support.DefaultLifecycleProcessor
+```
+2019-05-27 23:22:38.300 [main] DEBUG org.springframework.context.support.DefaultLifecycleProcessor - Successfully started bean 'eurekaAutoServiceRegistration'
+2019-05-27 23:22:38.307 [main] DEBUG org.springframework.context.support.DefaultLifecycleProcessor - Successfully started bean 'org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration'
+```
+- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap
+```
+2019-05-27 23:22:38.386 [Thread-11] INFO  org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap - Setting the eureka configuration..
+2019-05-27 23:22:38.397 [Thread-11] INFO  org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap - Eureka data center value eureka.datacenter is not set, defaulting to default
+2019-05-27 23:22:38.653 [Thread-11] INFO  org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap - isAws returned false
+2019-05-27 23:22:38.654 [Thread-11] INFO  org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap - Initialized server context
+```
+- org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration
+```
+2019-05-27 23:22:38.588 [main] INFO  org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration - Updating port to 8000
+```
+- com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl
+```
+2019-05-27 23:22:38.654 [Thread-11] INFO  com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl - Got 1 instances from neighboring DS node
+2019-05-27 23:22:38.654 [Thread-11] INFO  com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl - Renew threshold is: 1
+2019-05-27 23:22:38.655 [Thread-11] INFO  com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl - Changing status to UP
+```
+- org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration
+```
+2019-05-27 23:22:38.670 [Thread-11] INFO  org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration - Started Eureka Server
+```
+- 1
+```
+
+```
+### spring cloud report
+```
+   CommonsClientAutoConfiguration.DiscoveryLoadBalancerConfiguration#discoveryCompositeHealthIndicator matched:
+      - @ConditionalOnProperty (spring.cloud.discovery.client.composite-indicator.enabled) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.client.discovery.health.DiscoveryHealthIndicator,org.springframework.boot.actuate.health.HealthAggregator; SearchStrategy: all) found beans 'discoveryClientHealthIndicator', 'eurekaHealthIndicator', 'healthAggregator' (OnBeanCondition)
+   EurekaClientAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'com.netflix.discovery.EurekaClientConfig' (OnClassCondition)
+      - @ConditionalOnProperty (eureka.client.enabled) matched; @ConditionalOnProperty (spring.cloud.discovery.enabled) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$Marker; SearchStrategy: all) found bean 'eurekaDiscoverClientMarker' (OnBeanCondition)
+
+   EurekaClientAutoConfiguration#eurekaAutoServiceRegistration matched:
+      - @ConditionalOnProperty (spring.cloud.service-registry.auto-registration.enabled) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationProperties; SearchStrategy: all) found bean 'spring.cloud.service-registry.auto-registration-org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationProperties' (OnBeanCondition)
+
+   EurekaClientAutoConfiguration#eurekaClientConfigBean matched:
+      - @ConditionalOnMissingBean (types: com.netflix.discovery.EurekaClientConfig; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   EurekaClientAutoConfiguration#eurekaInstanceConfigBean matched:
+      - @ConditionalOnMissingBean (types: com.netflix.appinfo.EurekaInstanceConfig; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   EurekaClientAutoConfiguration#serviceManagementMetadataProvider matched:
+      - @ConditionalOnMissingBean (types: org.springframework.cloud.netflix.eureka.metadata.ManagementMetadataProvider; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   EurekaClientAutoConfiguration.EurekaHealthIndicatorConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.actuate.health.Health' (OnClassCondition)
+
+   EurekaClientAutoConfiguration.EurekaHealthIndicatorConfiguration#eurekaHealthIndicator matched:
+      - @ConditionalOnMissingBean (types: org.springframework.cloud.netflix.eureka.EurekaHealthIndicator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnEnabledHealthIndicator management.health.defaults.enabled is considered true (OnEnabledHealthIndicatorCondition)
+
+   EurekaClientAutoConfiguration.RefreshableEurekaClientConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.cloud.context.scope.refresh.RefreshScope' (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.autoconfigure.RefreshAutoConfiguration; SearchStrategy: all) found bean 'org.springframework.cloud.autoconfigure.RefreshAutoConfiguration' (OnBeanCondition)
+
+   EurekaClientAutoConfiguration.RefreshableEurekaClientConfiguration#eurekaApplicationInfoManager matched:
+      - @ConditionalOnMissingBean (types: com.netflix.appinfo.ApplicationInfoManager; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   EurekaClientAutoConfiguration.RefreshableEurekaClientConfiguration#eurekaClient matched:
+      - @ConditionalOnMissingBean (types: com.netflix.discovery.EurekaClient; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   EurekaClientAutoConfiguration.RefreshableEurekaClientConfiguration#eurekaRegistration matched:
+      - @ConditionalOnProperty (spring.cloud.service-registry.auto-registration.enabled) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationProperties; SearchStrategy: all) found bean 'spring.cloud.service-registry.auto-registration-org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationProperties' (OnBeanCondition)
+
+   EurekaDiscoveryClientConfiguration matched:
+      - @ConditionalOnClass found required class 'com.netflix.discovery.EurekaClientConfig' (OnClassCondition)
+      - @ConditionalOnProperty (eureka.client.enabled) matched; @ConditionalOnProperty (spring.cloud.discovery.enabled) matched (OnPropertyCondition)
+
+   EurekaDiscoveryClientConfiguration.EurekaClientConfigurationRefresher matched:
+      - @ConditionalOnClass found required class 'org.springframework.cloud.context.scope.refresh.RefreshScopeRefreshedEvent' (OnClassCondition)
+
+   EurekaServerAutoConfiguration matched:
+      - @ConditionalOnBean (types: org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration$Marker; SearchStrategy: all) found bean 'eurekaServerMarkerBean' (OnBeanCondition)
+
+   EurekaServerAutoConfiguration#eurekaController matched:
+      - @ConditionalOnProperty (eureka.dashboard.enabled) matched (OnPropertyCondition)
+
+   EurekaServerAutoConfiguration#peerEurekaNodes matched:
+      - @ConditionalOnMissingBean (types: com.netflix.eureka.cluster.PeerEurekaNodes; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   EurekaServerAutoConfiguration.EurekaServerConfigBeanConfiguration#eurekaServerConfig matched:
+      - @ConditionalOnMissingBean (types: com.netflix.eureka.EurekaServerConfig; SearchStrategy: all) did not find any beans (OnBeanCondition)
+   RibbonEurekaAutoConfiguration matched:
+      - AllNestedConditions 3 matched 0 did not; NestedCondition on ConditionalOnRibbonAndEurekaEnabled.OnRibbonAndEurekaEnabledCondition.OnEurekaClientEnabled found matching nested conditions @ConditionalOnProperty (eureka.client.enabled) matched; @ConditionalOnProperty (spring.cloud.discovery.enabled) matched, @ConditionalOnProperty (eureka.client.enabled) matched; @ConditionalOnProperty (spring.cloud.discovery.enabled) matched; NestedCondition on ConditionalOnRibbonAndEurekaEnabled.OnRibbonAndEurekaEnabledCondition.EurekaBeans @ConditionalOnBean (types: com.netflix.discovery.EurekaClient; SearchStrategy: all) found bean 'scopedTarget.eurekaClient'; NestedCondition on ConditionalOnRibbonAndEurekaEnabled.OnRibbonAndEurekaEnabledCondition.Defaults found matching nested conditions @ConditionalOnClass found required class 'com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList', @ConditionalOnBean (types: org.springframework.cloud.netflix.ribbon.SpringClientFactory; SearchStrategy: all) found bean 'springClientFactory', @ConditionalOnProperty (ribbon.eureka.enabled) matched (ConditionalOnRibbonAndEurekaEnabled.OnRibbonAndEurekaEnabledCondition)
+   ServiceRegistryAutoConfiguration.ServiceRegistryEndpointConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.actuate.endpoint.annotation.Endpoint' (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.client.serviceregistry.ServiceRegistry; SearchStrategy: all) found bean 'eurekaServiceRegistry' (OnBeanCondition)
+   EurekaClientAutoConfiguration.EurekaClientConfiguration:
+      Did not match:
+         - AnyNestedCondition 0 matched 2 did not; NestedCondition on EurekaClientAutoConfiguration.OnMissingRefreshScopeCondition.MissingScope @ConditionalOnMissingBean (types: org.springframework.cloud.autoconfigure.RefreshAutoConfiguration; SearchStrategy: all) found beans of type 'org.springframework.cloud.autoconfigure.RefreshAutoConfiguration' org.springframework.cloud.autoconfigure.RefreshAutoConfiguration; NestedCondition on EurekaClientAutoConfiguration.OnMissingRefreshScopeCondition.MissingClass @ConditionalOnMissingClass found unwanted class 'org.springframework.cloud.context.scope.refresh.RefreshScope' (EurekaClientAutoConfiguration.OnMissingRefreshScopeCondition)
+   EurekaClientConfigServerAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.cloud.config.server.config.ConfigServerProperties' (OnClassCondition)
+
+   EurekaDiscoveryClientConfigServiceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (spring.cloud.config.discovery.enabled) did not find property 'spring.cloud.config.discovery.enabled' (OnPropertyCondition)
+
+   EurekaDiscoveryClientConfiguration.EurekaHealthCheckHandlerConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (eureka.client.healthcheck.enabled) did not find property 'eureka.client.healthcheck.enabled' (OnPropertyCondition)
+```
+
 ## Eureka
 [![Build Status](https://travis-ci.org/Netflix/eureka.svg?branch=master)](https://travis-ci.org/Netflix/eureka)
 
