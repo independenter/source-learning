@@ -206,7 +206,9 @@ class ReadXML
 ![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/create-build.png)
 
 ### 原型
-:star: 
+:star: 用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。
+* 1.浅拷贝拷贝外层对象，对象里面的引用对象不进行拷贝。
+* 2.深拷贝需要进行内部的拷贝（人为进行拷贝）。
 ```
 package javat.create.proto;
 
@@ -255,7 +257,7 @@ public class ProtoTypeWukong
 ![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/create-proto.png)
 
 ### 单例
-:star: 
+:star: 保证一个类仅有一个实例，并提供一个访问它的全局访问点。多线程模式下需要双重检查
 ```
 package javat.create.singleton;
 
