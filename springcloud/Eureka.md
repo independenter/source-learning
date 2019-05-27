@@ -25,17 +25,17 @@ Eureka Learn 记录了对于Eureka的相关学习
 ## 依赖配置
 ### server
 ```
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-		</dependency>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
 ```
 ### client
 ```
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
 ```
 ## 概念阐述
 - Register：服务注册
@@ -56,7 +56,11 @@ DiscoveryManager.getInstance().shutdownComponent()；
 ## 设计模式
 
 ## 自我理解
-
+### 日志
+-[启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka.log)
+### 核心类名
+- com.netflix.eureka.registry.AbstractInstanceRegistry
+- 
 ## Eureka
 [![Build Status](https://travis-ci.org/Netflix/eureka.svg?branch=master)](https://travis-ci.org/Netflix/eureka)
 
