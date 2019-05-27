@@ -57,7 +57,7 @@ DiscoveryManager.getInstance().shutdownComponent()；
 
 ## 自我理解
 ### 日志
--[启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka.log)
+- [启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eukeka.log)
 ### 核心类名
 - com.netflix.eureka.registry.AbstractInstanceRegistry
 - 
