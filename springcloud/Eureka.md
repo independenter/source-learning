@@ -53,9 +53,8 @@ DiscoveryManager.getInstance().shutdownComponent()；
 
 - Eviction 服务剔除
 在默认的情况下，当Eureka客户端连续90秒没有向Eureka服务器发送服务续约，即心跳，Eureka服务器会将该服务实例从服务注册列表删除，即服务剔除。
-## 设计模式
 
-## 自我理解
+## 行为分析
 ### 日志
 - [启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eukeka.log)
 ### 涉及类名及行为
@@ -297,6 +296,9 @@ Mapping filters: filterRegistrationBean urls=[/*], filterRegistrationBean urls=[
       Did not match:
          - @ConditionalOnProperty (eureka.client.healthcheck.enabled) did not find property 'eureka.client.healthcheck.enabled' (OnPropertyCondition)
 ```
+## 核心类行为分析
+- org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider
+:warning:该类org.springframework.cloud.netflix.eureka.metadata.DefaultManagementMetadataProvider#get用于提供元数据
 
 ## Eureka
 [![Build Status](https://travis-ci.org/Netflix/eureka.svg?branch=master)](https://travis-ci.org/Netflix/eureka)
