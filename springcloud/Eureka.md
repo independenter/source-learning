@@ -16,10 +16,11 @@ Eureka Learn 记录了对于Eureka的相关学习
 - [自我理解](#自我理解)
 
 ## 学习版本
-|模块|版本|
-|spring-boot|2.1.5.RELEASE|
-|java.version|1.8|
-|spring-cloud.version|Greenwich.SR1|
+| 模块 | 版本 |
+| --- | --- |
+| spring-boot | 2.1.5.RELEASE |
+| java.version | 1.8 |
+| spring-cloud.version | Greenwich.SR1 |
 
 ## 依赖配置
 ### server
