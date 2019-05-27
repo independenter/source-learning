@@ -1,5 +1,5 @@
 # Eureka Learn
-Eureka Learn 记录了对于Eureka的相关学习
+Eureka Learn 记录了对于Eureka的相关学习总结
 # [源码地址](https://github.com/Netflix/eureka.git)
 # [学习地址](https://github.com/independenter/eureka.git)
 
@@ -65,19 +65,6 @@ Generating bean factory id from names: [default.org.springframework.cloud.netfli
 ```
 - org.springframework.beans.factory.support.DefaultListableBeanFactory
 ```
-Creting shared instance of singleton bean on the factory id above.
-```
-- org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider
-```
-2019-05-27 23:22:30.228 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-client/1.9.8/eureka-client-1.9.8.jar!/com/netflix/discovery/provider/DiscoveryJerseyProvider.class]
-2019-05-27 23:22:30.339 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ASGResource.class]
-2019-05-27 23:22:30.343 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ApplicationsResource.class]
-2019-05-27 23:22:30.345 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/InstancesResource.class]
-2019-05-27 23:22:30.346 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/PeerReplicationResource.class]
-2019-05-27 23:22:30.347 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/SecureVIPResource.class]
-2019-05-27 23:22:30.347 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ServerInfoResource.class]
-2019-05-27 23:22:30.348 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/StatusResource.class]
-2019-05-27 23:22:30.348 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/VIPResource.class]
 2019-05-27 23:22:30.518 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaHealthIndicator'
 2019-05-27 23:22:30.519 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration'
 2019-05-27 23:22:30.521 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eurekaInstanceConfigBean'
@@ -130,6 +117,18 @@ Creting shared instance of singleton bean on the factory id above.
 2019-05-27 23:22:38.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaRegistration' via factory method to bean named 'eurekaClient'
 2019-05-27 23:22:38.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaRegistration' via factory method to bean named 'eurekaInstanceConfigBean'
 2019-05-27 23:22:38.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'scopedTarget.eurekaRegistration' via factory method to bean named 'eurekaApplicationInfoManager'
+```
+- org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider
+```
+2019-05-27 23:22:30.228 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-client/1.9.8/eureka-client-1.9.8.jar!/com/netflix/discovery/provider/DiscoveryJerseyProvider.class]
+2019-05-27 23:22:30.339 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ASGResource.class]
+2019-05-27 23:22:30.343 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ApplicationsResource.class]
+2019-05-27 23:22:30.345 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/InstancesResource.class]
+2019-05-27 23:22:30.346 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/PeerReplicationResource.class]
+2019-05-27 23:22:30.347 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/SecureVIPResource.class]
+2019-05-27 23:22:30.347 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/ServerInfoResource.class]
+2019-05-27 23:22:30.348 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/StatusResource.class]
+2019-05-27 23:22:30.348 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-core/1.9.8/eureka-core-1.9.8.jar!/com/netflix/eureka/resources/VIPResource.class]
 ```
 - org.springframework.core.env.PropertySourcesPropertyResolver
 ```
