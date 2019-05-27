@@ -12,8 +12,7 @@ Eureka Learn 记录了对于Eureka的相关学习总结
 - [学习版本](#学习版本)
 - [依赖配置](#依赖配置)
 - [概念阐述](#概念阐述) 
-- [设计模式](#设计模式) 
-- [自我理解](#自我理解)
+- [行为分析](#行为分析) 
 
 ## 学习版本
 | 模块 | 版本 |
@@ -429,7 +428,8 @@ org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegist
 com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl#openForTraffic
 <-- org.springframework.cloud.netflix.eureka.server.InstanceRegistry#openForTraffic
 <-- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap#initEurekaServerContext
-<-- C:/Users/Administrator/.m2/repository/org/springframework/cloud/spring-cloud-netflix-eureka-server/2.1.1.RELEASE/spring-cloud-netflix-eureka-server-2.1.1.RELEASE.jar!/org/springframework/cloud/netflix/eureka/server/EurekaServerBootstrap.class:54
+<-- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap#contextInitialized
+org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration#start
 ```
 ## Eureka
 [![Build Status](https://travis-ci.org/Netflix/eureka.svg?branch=master)](https://travis-ci.org/Netflix/eureka)
