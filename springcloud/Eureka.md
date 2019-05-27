@@ -12,7 +12,9 @@ Eureka Learn 记录了对于Eureka的相关学习总结
 - [学习版本](#学习版本)
 - [依赖配置](#依赖配置)
 - [概念阐述](#概念阐述) 
-- [行为分析](#行为分析) 
+- [行为分析]
+  - [服务端行为分析](#服务端行为分析)
+  - [客户端行为分析](#客户端行为分析)
 
 ## 学习版本
 | 模块 | 版本 |
@@ -53,11 +55,10 @@ DiscoveryManager.getInstance().shutdownComponent()；
 - Eviction 服务剔除
 在默认的情况下，当Eureka客户端连续90秒没有向Eureka服务器发送服务续约，即心跳，Eureka服务器会将该服务实例从服务注册列表删除，即服务剔除。
 
-## 行为分析
+## 服务端行为分析
 ### 日志
 - [服务端启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka-server.log)
-- [客户端启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka-client.log)
-### 涉及类名及行为
+### 类名及行为
 - org.springframework.cloud.context.scope.GenericScope
 ```
 Generating bean factory id from names: [default.org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration.RibbonClientSpecification,eureka.dashboard-org.springframework.cloud.netflix.eureka.server.EurekaDashboardProperties, eureka.instance.registry-org.springframework.cloud.netflix.eureka.server.InstanceRegistryProperties, eurekaApplication, eurekaApplicationInfoManager, eurekaAutoServiceRegistration, eurekaClient, eurekaClientConfigBean, eurekaController, eurekaDiscoverClientMarker, eurekaFeature, eurekaHealthIndicator, eurekaInstanceConfigBean, eurekaRegistration, eurekaServerBootstrap, eurekaServerConfig, eurekaServerContext, eurekaServerFeature, eurekaServerMarkerBean, eurekaServiceRegistry,org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$EurekaClientConfigurationRefresher, org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration$EurekaServerConfigBeanConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration,org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration,peerEurekaNodes,scopedTarget.eurekaApplicationInfoManager, scopedTarget.eurekaClient, scopedTarget.eurekaRegistration,]
@@ -431,6 +432,11 @@ com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl#openForTraffic
 <-- org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap#contextInitialized
 org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration#start
 ```
+## 客户端行为分析
+### 日志
+- [客户端启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eureka-client.log)
+### 类名及行为
+
 ## Eureka
 [![Build Status](https://travis-ci.org/Netflix/eureka.svg?branch=master)](https://travis-ci.org/Netflix/eureka)
 
