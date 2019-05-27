@@ -605,39 +605,361 @@ class SRfarm implements Farm
 ## 结构型
 
 ### 组合
-:star: 
+:star: 将对象组合成树形结构以表示"部分-整体"的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。
 ```
+package javat.structure.composite;
+
+import java.util.ArrayList;
+public class ShoppingTest
+{
+    public static void main(String[] args)
+    {
+        float s=0;
+        Bags BigBag,mediumBag,smallRedBag,smallWhiteBag;
+        Goods sp;
+        BigBag=new Bags("大袋子");
+        mediumBag=new Bags("中袋子");
+        smallRedBag=new Bags("红色小袋子");
+        smallWhiteBag=new Bags("白色小袋子");               
+        sp=new Goods("婺源特产",2,7.9f);
+        smallRedBag.add(sp);
+        sp=new Goods("婺源地图",1,9.9f);
+        smallRedBag.add(sp);       
+        sp=new Goods("韶关香菇",2,68);
+        smallWhiteBag.add(sp);
+        sp=new Goods("韶关红茶",3,180);
+        smallWhiteBag.add(sp);       
+        sp=new Goods("景德镇瓷器",1,380);
+        mediumBag.add(sp);
+        mediumBag.add(smallRedBag);       
+        sp=new Goods("李宁牌运动鞋",1,198);
+        BigBag.add(sp);
+        BigBag.add(smallWhiteBag);
+        BigBag.add(mediumBag);
+        System.out.println("您选购的商品有：");
+        BigBag.show();
+        s=BigBag.calculation();       
+        System.out.println("要支付的总价是："+s+"元");
+    }
+}
+//抽象构件：物品
+interface Articles
+{
+    public float calculation(); //计算
+    public void show();
+}
+//树叶构件：商品
+class Goods implements Articles
+{
+    private String name;     //名字
+    private int quantity;    //数量
+    private float unitPrice; //单价
+    public Goods(String name,int quantity,float unitPrice)
+    {
+        this.name=name;
+        this.quantity=quantity;
+        this.unitPrice=unitPrice;
+    }   
+    public float calculation()
+    {
+        return quantity*unitPrice; 
+    }
+    public void show()
+    {
+        System.out.println(name+"(数量："+quantity+"，单价："+unitPrice+"元)");
+    }
+}
+//树枝构件：袋子
+class Bags implements Articles
+{
+    private String name;     //名字   
+    private ArrayList<Articles> bags=new ArrayList<Articles>();   
+    public Bags(String name)
+    {
+        this.name=name;       
+    }
+    public void add(Articles c)
+    {
+        bags.add(c);
+    }   
+    public void remove(Articles c)
+    {
+        bags.remove(c);
+    }   
+    public Articles getChild(int i)
+    {
+        return bags.get(i);
+    }   
+    public float calculation()
+    {
+        float s=0;
+        for(Object obj:bags)
+        {
+            s+=((Articles)obj).calculation();
+        }
+        return s;
+    }
+    public void show()
+    {
+        for(Object obj:bags)
+        {
+            ((Articles)obj).show();
+        }
+    }
+}
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-composite.png)
 
 ### 装饰
-:star: 
+:star: 动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。
 ```
+package javat.structure.decorator;
+//装饰器模式
+public class DecoratorPattern
+{
+    public static void main(String[] args)
+    {
+        Component p=new ConcreteComponent();
+        p.operation();
+        System.out.println("---------------------------------");
+        Component d=new ConcreteDecorator(p);
+        d.operation();
+    }
+}
+//抽象构件角色
+interface  Component
+{
+    public void operation();
+}
+//具体构件角色
+class ConcreteComponent implements Component
+{
+    public ConcreteComponent()
+    {
+        System.out.println("创建具体构件角色");
+    }
+    public void operation()
+    {
+        System.out.println("调用具体构件角色的方法operation()");
+    }
+}
+//抽象装饰角色
+class Decorator implements Component
+{
+    private Component component;
+    public Decorator(Component component)
+    {
+        this.component=component;
+    }
+    public void operation()
+    {
+        component.operation();
+    }
+}
+//具体装饰角色
+class ConcreteDecorator extends Decorator
+{
+    public ConcreteDecorator(Component component)
+    {
+        super(component);
+    }
+    public void operation()
+    {
+        super.operation();
+        addedFunction();
+    }
+    public void addedFunction()
+    {
+        System.out.println("为具体构件角色增加额外的功能addedFunction()");
+    }
+}
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-decorator.png)
 
 ### 外观
-:star: 
+:star: 为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。
 ```
+package javat.structure.facade;
+//外观模式
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+public class WySpecialtyFacade
+{
+    public static void main(String[] args)
+    {
+        JFrame f=new JFrame ("外观模式: 婺源特产选择测试");
+        Container cp=f.getContentPane();
+        WySpecialty wys=new WySpecialty();
+        JScrollPane treeView=new JScrollPane(wys.tree);
+        JScrollPane scrollpane=new JScrollPane(wys.label);
+        JSplitPane splitpane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true,treeView,scrollpane); //分割面版
+        splitpane.setDividerLocation(230);     //设置splitpane的分隔线位置
+        splitpane.setOneTouchExpandable(true); //设置splitpane可以展开或收起                       
+        cp.add(splitpane);
+        f.setSize(650,350);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
+class WySpecialty extends JPanel implements TreeSelectionListener
+{
+    private static final long serialVersionUID=1L;
+    final JTree tree;
+    JLabel label;
+    private Specialty1 s1=new Specialty1();
+    private Specialty2 s2=new Specialty2();
+    private Specialty3 s3=new Specialty3();
+    private Specialty4 s4=new Specialty4();
+    private Specialty5 s5=new Specialty5();
+    private Specialty6 s6=new Specialty6();
+    private Specialty7 s7=new Specialty7();
+    private Specialty8 s8=new Specialty8();
+    WySpecialty(){
+        DefaultMutableTreeNode top=new DefaultMutableTreeNode("婺源特产");
+        DefaultMutableTreeNode node1=null,node2=null,tempNode=null;
+        node1=new DefaultMutableTreeNode("婺源四大特产（红、绿、黑、白）");
+        tempNode=new DefaultMutableTreeNode("婺源荷包红鲤鱼");
+        node1.add(tempNode);
+        tempNode=new DefaultMutableTreeNode("婺源绿茶");
+        node1.add(tempNode);
+        tempNode=new DefaultMutableTreeNode("婺源龙尾砚");
+        node1.add(tempNode);
+        tempNode=new DefaultMutableTreeNode("婺源江湾雪梨");
+        node1.add(tempNode);
+        top.add(node1);
+        node2=new DefaultMutableTreeNode("婺源其它土特产");
+        tempNode=new DefaultMutableTreeNode("婺源酒糟鱼");
+        node2.add(tempNode);
+        tempNode=new DefaultMutableTreeNode("婺源糟米子糕");
+        node2.add(tempNode);
+        tempNode=new DefaultMutableTreeNode("婺源清明果");
+        node2.add(tempNode);
+        tempNode=new DefaultMutableTreeNode("婺源油煎灯");
+        node2.add(tempNode);
+        top.add(node2);
+        tree=new JTree(top);
+        tree.addTreeSelectionListener(this);
+        label=new JLabel();
+    }
+    public void valueChanged(TreeSelectionEvent e)
+    {
+        if(e.getSource()==tree)
+        {
+            DefaultMutableTreeNode node=(DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+            if(node==null) return;
+            if(node.isLeaf())
+            {
+                Object object=node.getUserObject();
+                String sele=object.toString();
+                label.setText(sele);
+                label.setHorizontalTextPosition(JLabel.CENTER);
+                label.setVerticalTextPosition(JLabel.BOTTOM);
+                sele=sele.substring(2,4);
+                if(sele.equalsIgnoreCase("荷包")) label.setIcon(s1);
+                else if(sele.equalsIgnoreCase("绿茶")) label.setIcon(s2);
+                else if(sele.equalsIgnoreCase("龙尾")) label.setIcon(s3);
+                else if(sele.equalsIgnoreCase("江湾")) label.setIcon(s4);
+                else if(sele.equalsIgnoreCase("酒糟")) label.setIcon(s5);
+                else if(sele.equalsIgnoreCase("糟米")) label.setIcon(s6);
+                else if(sele.equalsIgnoreCase("清明")) label.setIcon(s7);
+                else if(sele.equalsIgnoreCase("油煎")) label.setIcon(s8);
+                label.setHorizontalAlignment(JLabel.CENTER);
+            }
+        }
+    }
+}
+class Specialty1 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty1()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty11.jpg");
+    }
+}
+class Specialty2 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty2()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty12.jpg");
+    }
+}
+class Specialty3 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty3()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty13.jpg");
+    }
+}
+class Specialty4 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty4()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty14.jpg");
+    }
+}
+class Specialty5 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty5()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty21.jpg");
+    }
+}
+class Specialty6 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty6()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty22.jpg");
+    }
+}
+class Specialty7 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty7()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty23.jpg");
+    }
+}
+class Specialty8 extends ImageIcon
+{
+    private static final long serialVersionUID=1L;
+    Specialty8()
+    {
+        super("E:\\workspacecrm\\myboss\\src\\facade/Specialty24.jpg");
+    }
+}
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-facade.png)
 
 ### 享元
-:star: 
+:star: 运用共享技术有效地支持大量细粒度的对象。
 ```
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-decorator.png)
 
 ### 代理
-:star: 
+:star: 为其他对象提供一种代理以控制对这个对象的访问。
 ```
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-decorator.png)
 
 ### 适配器
-:star: 
+:star: 将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
 ```
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-decorator.png)
 
 ### 桥接
-:star: 
+:star: 将抽象部分与实现部分分离，使它们都可以独立的变化。
 ```
 ```
+![Alt text](https://github.com/independenter/source-learning/blob/master/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/res/structure-decorator.png)
 
 ## 行为型
 
