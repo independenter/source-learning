@@ -59,17 +59,14 @@ DiscoveryManager.getInstance().shutdownComponent()；
 ### 日志
 - [启动日志](https://github.com/independenter/source-learning/blob/master/springcloud/Eukeka.log)
 ### 涉及类名及行为
-- [org.springframework.cloud.context.scope.GenericScope](#scope.GenericScope)
-- [org.springframework.beans.factory.support.DefaultListableBeanFactory](#support.DefaultListableBeanFactory)
-#### support.DefaultListableBeanFactory
-```
-Creting shared instance of singleton bean on the factory id above.
-```
-#### scope.GenericScope
+- org.springframework.cloud.context.scope.GenericScope
 ```
 Generating bean factory id from names: [default.org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration.RibbonClientSpecification,eureka.dashboard-org.springframework.cloud.netflix.eureka.server.EurekaDashboardProperties, eureka.instance.registry-org.springframework.cloud.netflix.eureka.server.InstanceRegistryProperties, eurekaApplication, eurekaApplicationInfoManager, eurekaAutoServiceRegistration, eurekaClient, eurekaClientConfigBean, eurekaController, eurekaDiscoverClientMarker, eurekaFeature, eurekaHealthIndicator, eurekaInstanceConfigBean, eurekaRegistration, eurekaServerBootstrap, eurekaServerConfig, eurekaServerContext, eurekaServerFeature, eurekaServerMarkerBean, eurekaServiceRegistry,org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$EurekaClientConfigurationRefresher, org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration$EurekaServerConfigBeanConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration,org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration,peerEurekaNodes,scopedTarget.eurekaApplicationInfoManager, scopedTarget.eurekaClient, scopedTarget.eurekaRegistration,]
 ```
-
+- org.springframework.beans.factory.support.DefaultListableBeanFactory
+```
+Creting shared instance of singleton bean on the factory id above.
+```
 - org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider
 ```
 2019-05-27 23:22:30.228 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: URL [jar:file:/C:/Users/Administrator/.m2/repository/com/netflix/eureka/eureka-client/1.9.8/eureka-client-1.9.8.jar!/com/netflix/discovery/provider/DiscoveryJerseyProvider.class]
@@ -172,6 +169,10 @@ Mapping filters: filterRegistrationBean urls=[/*], filterRegistrationBean urls=[
 - com.netflix.eureka.registry.AbstractInstanceRegistry
 ```
 2019-05-27 23:22:38.062 [main] INFO  com.netflix.eureka.registry.AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+2019-05-27 23:22:48.656 [Eureka-EvictionTimer] INFO  com.netflix.eureka.registry.AbstractInstanceRegistry - Running the evict task with compensationTime 0ms
+2019-05-27 23:22:48.656 [Eureka-EvictionTimer] DEBUG com.netflix.eureka.registry.AbstractInstanceRegistry - Running the evict task
+2019-05-27 23:22:58.656 [Eureka-EvictionTimer] INFO  com.netflix.eureka.registry.AbstractInstanceRegistry - Running the evict task with compensationTime 0ms
+2019-05-27 23:22:58.656 [Eureka-EvictionTimer] DEBUG com.netflix.eureka.registry.AbstractInstanceRegistry - Running the evict task
 ```
 - com.netflix.eureka.DefaultEurekaServerContext
 ```
@@ -207,9 +208,13 @@ Mapping filters: filterRegistrationBean urls=[/*], filterRegistrationBean urls=[
 ```
 2019-05-27 23:22:38.670 [Thread-11] INFO  org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration - Started Eureka Server
 ```
-- 1
+- com.netflix.discovery.shared.MonitoredConnectionManager
 ```
-
+2019-05-27 23:23:07.946 [Eureka-JerseyClient-Conn-Cleaner2] DEBUG com.netflix.discovery.shared.MonitoredConnectionManager - Closing connections idle longer than 30 SECONDS
+```
+- com.netflix.discovery.shared.NamedConnectionPool
+```
+2019-05-27 23:23:07.948 [Eureka-JerseyClient-Conn-Cleaner2] DEBUG com.netflix.discovery.shared.NamedConnectionPool - Closing connections idle longer than 30 SECONDS
 ```
 ### spring cloud report
 ```
