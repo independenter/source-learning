@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <className>Red</className>
+    <className>Wallet</className>
+    <!--<className>Yellow</className>-->
+    <!--<className>HandBag</className>-->
+</config>
