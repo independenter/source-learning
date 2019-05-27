@@ -61,10 +61,11 @@ DiscoveryManager.getInstance().shutdownComponent()；
 ### 涉及类名
 - [org.springframework.cloud.context.scope.GenericScope](#scope.GenericScope)
 - [org.springframework.beans.factory.support.DefaultListableBeanFactory](#support.DefaultListableBeanFactory)
+## support.DefaultListableBeanFactory
 ```
 Creting shared instance of singleton bean on the factory id above.
 ```
-#scope.GenericScope
+## scope.GenericScope
 ```
 Generating bean factory id from names: [default.org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration.RibbonClientSpecification,eureka.dashboard-org.springframework.cloud.netflix.eureka.server.EurekaDashboardProperties, eureka.instance.registry-org.springframework.cloud.netflix.eureka.server.InstanceRegistryProperties, eurekaApplication, eurekaApplicationInfoManager, eurekaAutoServiceRegistration, eurekaClient, eurekaClientConfigBean, eurekaController, eurekaDiscoverClientMarker, eurekaFeature, eurekaHealthIndicator, eurekaInstanceConfigBean, eurekaRegistration, eurekaServerBootstrap, eurekaServerConfig, eurekaServerContext, eurekaServerFeature, eurekaServerMarkerBean, eurekaServiceRegistry,org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$EurekaHealthIndicatorConfiguration, org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration, org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration$EurekaClientConfigurationRefresher, org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration$EurekaServerConfigBeanConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration, org.springframework.cloud.netflix.eureka.server.EurekaServerMarkerConfiguration,org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration,peerEurekaNodes,scopedTarget.eurekaApplicationInfoManager, scopedTarget.eurekaClient, scopedTarget.eurekaRegistration,]
 ```
